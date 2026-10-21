@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Зоомагазин "Лапки"</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+    <!-- Шапка -->
+    <header class="header">
+        <div class="container header-container">
+            <div class="logo">🐾 Лапки</div>
+            <nav class="nav">
+                <a href="#hero">Главная</a>
+                <a href="#catalog">Каталог</a>
+                <a href="#about">О нас</a>
+                <a href="#contacts">Контакты</a>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <!-- Главный экран -->
+        <section id="hero" class="hero">
+            <div class="container">
+                <h1>Всё для ваших любимых питомцев</h1>
+                <p>Качественные корма, игрушки и аксессуары по доступным ценам.</p>
+                <a href="#catalog" class="btn">Перейти к товарам</a>
+            </div>
+        </section>
+
+        <!-- Каталог товаров -->
+        <section id="catalog" class="catalog-section">
+            <div class="container">
+                <h2>Каталог товаров</h2>
+                
+                <!-- Поле живого поиска -->
+                <div class="search-box">
+                    <input type="text" id="searchInput" placeholder="Поиск по товарам...">
+                </div>
+
+                <!-- Фильтр по категориям -->
+                <div class="categories" id="categoriesBox">
+                    <button class="category-btn active" data-category="all">Все товары</button>
+                    <button class="category-btn" data-category="cats">Кошки</button>
+                    <button class="category-btn" data-category="dogs">Собаки</button>
+                    <button class="category-btn" data-category="birds">Птицы</button>
+                    <button class="category-btn" data-category="fish">Рыбки</button>
+                </div>
+
+                <!-- Список карточек с дата-атрибутами категорий (data-category) -->
+                <div class="products-grid" id="productsGrid">
+                    
+                    <div class="card" data-category="cats">
+                        <img src="cards/catfood.jpg" alt="Корм">
+                        <h3>Сухой корм для кошек</h3>
+                        <p class="category">Категория: Кошки</p>
+                        <p class="price">450 руб.</p>
+                        <button class="card-btn">Купить</button>
+                    </div>
+
+                    <div class="card" data-category="dogs">
+                        <img src="cards/bone.jpg" alt="Кость">
+                        <h3>Игрушка косточка для собак</h3>
+                        <p class="category">Категория: Собаки</p>
+                        <p class="price">250 руб.</p>
+                        <button class="card-btn">Купить</button>
+                    </div>
+
+                    <div class="card" data-category="birds">
+                        <img src="cards/cage.jpg" alt="Клетка">
+                        <h3>Клетка для попугая</h3>
+                        <p class="category">Категория: Птицы</p>
+                        <p class="price">1200 руб.</p>
+                        <button class="card-btn">Купить</button>
+                    </div>
+
+                    <div class="card" data-category="fish">
+                        <img src="cards/aqua.jpg" alt="Аквариум">
+                        <h3>Аквариум 20 литров</h3>
+                        <p class="category">Категория: Рыбки</p>
+                        <p class="price">2100 руб.</p>
+                        <button class="card-btn">Купить</button>
+                    </div>
+
+                    <div class="card" data-category="cats">
+                        <img src="cards/scrach.jpg" alt="Когтеточка">
+                        <h3>Когтеточка столбик</h3>
+                        <p class="category">Категория: Кошки</p>
+                        <p class="price">850 руб.</p>
+                        <button class="card-btn">Купить</button>
+                    </div>
+
+                    <div class="card" data-category="dogs">
+                        <img src="cards/leash.jpg" alt="Поводок">
+                        <h3>Поводок-рулетка</h3>
+                        <p class="category">Категория: Собаки</p>
+                        <p class="price">600 руб.</p>
+                        <button class="card-btn">Купить</button>
+                    </div>
+
+                </div>
+                
+                <!-- Сообщение, если ничего не найдено -->
+                <p id="noResults" class="no-results" style="display: none;">Товары не найдены :(</p>
+            </div>
+        </section>
+
+        <!-- Дополнительная секция "О нас" -->
+        <section id="about" class="about-section">
+            <div class="container">
+                <h2>Почему выбирают нас</h2>
+                <div class="features">
+                    <div class="feature-item">
+                        <h3>Быстрая доставка</h3>
+                        <p>Доставим заказ в течение дня по всему городу.</p>
+                    </div>
+                    <div class="feature-item">
+                        <h3>Гарантия качества</h3>
+                        <p>Только проверенные бренды и свежие корма.</p>
+                    </div>
+                    <div class="feature-item">
+                        <h3>Низкие цены</h3>
+                        <p>Приятные скидки постоянным покупателям.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Контакты -->
+        <section id="contacts" class="contacts-section">
+            <div class="container">
+                <h2>Связаться с нами</h2>
+                <form class="contact-form" onsubmit="event.preventDefault();">
+                    <input type="text" placeholder="Ваше имя" required>
+                    <input type="email" placeholder="Ваш Email" required>
+                    <textarea placeholder="Сообщение" rows="4"></textarea>
+                    <button type="submit" class="btn">Отправить</button>
+                </form>
+            </div>
+        </section>
+    </main>
+
+    <!-- Подвал -->
+    <footer class="footer">
+        <div class="container">
+            <p>© 2026 Зоомагазин "Лапки".</p>
+            <p>Телефон: +7 (983) 453-65-00 | Email: zanegin.020202@gmail.com</p>
+        </div>
+    </footer>
+
+    <script src="js/script.js"></script>
+</body>
+</html>
