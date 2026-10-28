@@ -8,148 +8,177 @@
 </head>
 <body>
 
-    <!-- Шапка -->
     <header class="header">
         <div class="container header-container">
-            <div class="logo">🐾 Лапки</div>
+            <a href="#hero" class="logo">🐾 Лапки</a>
             <nav class="nav">
-                <a href="#hero">Главная</a>
-                <a href="#catalog">Каталог</a>
-                <a href="#about">О нас</a>
-                <a href="#contacts">Контакты</a>
+                <a href="#hero" data-i18n="navHome">Главная</a>
+                <a href="#catalog" data-i18n="navCatalog">Каталог</a>
+                <a href="#about" data-i18n="navAbout">О нас</a>
+                <a href="#contacts" data-i18n="navContacts">Контакты</a>
+                <button id="langToggleBtn" class="lang-btn">EN</button>
+                <button id="cartBtn" class="cart-btn">
+                    🛒 <span data-i18n="cartTitle">Корзина</span> (<span id="cartCount">0</span>)
+                </button>
             </nav>
         </div>
     </header>
 
     <main>
-        <!-- Главный экран -->
         <section id="hero" class="hero">
             <div class="container">
-                <h1>Всё для ваших любимых питомцев</h1>
-                <p>Качественные корма, игрушки и аксессуары по доступным ценам.</p>
-                <a href="#catalog" class="btn">Перейти к товарам</a>
+                <h1 data-i18n="heroTitle">Всё для ваших любимых питомцев</h1>
+                <p data-i18n="heroDesc">Качественные корма, игрушки и аксессуары по доступным ценам.</p>
+                <a href="#catalog" class="btn" data-i18n="heroBtn">Перейти к товарам</a>
             </div>
         </section>
 
-        <!-- Каталог товаров -->
         <section id="catalog" class="catalog-section">
             <div class="container">
-                <h2>Каталог товаров</h2>
+                <h2 data-i18n="catalogTitle">Каталог товаров</h2>
                 
-                <!-- Поле живого поиска -->
                 <div class="search-box">
-                    <input type="text" id="searchInput" placeholder="Поиск по товарам...">
+                    <input type="text" id="searchInput" placeholder="Поиск по товарам..." data-i18n-placeholder="searchPlaceholder">
                 </div>
 
-                <!-- Фильтр по категориям -->
                 <div class="categories" id="categoriesBox">
-                    <button class="category-btn active" data-category="all">Все товары</button>
-                    <button class="category-btn" data-category="cats">Кошки</button>
-                    <button class="category-btn" data-category="dogs">Собаки</button>
-                    <button class="category-btn" data-category="birds">Птицы</button>
-                    <button class="category-btn" data-category="fish">Рыбки</button>
+                    <button class="category-btn active" data-category="all" data-i18n="catAll">Все товары</button>
+                    <button class="category-btn" data-category="cats" data-i18n="catCats">Кошки</button>
+                    <button class="category-btn" data-category="dogs" data-i18n="catDogs">Собаки</button>
+                    <button class="category-btn" data-category="birds" data-i18n="catBirds">Птицы</button>
+                    <button class="category-btn" data-category="fish" data-i18n="catFish">Рыбки</button>
                 </div>
 
-                <!-- Список карточек с дата-атрибутами категорий (data-category) -->
                 <div class="products-grid" id="productsGrid">
                     
-                    <div class="card" data-category="cats">
+                    <div class="card animate-on-scroll" data-id="1" data-category="cats" data-price="450">
                         <img src="cards/catfood.jpg" alt="Корм">
-                        <h3>Сухой корм для кошек</h3>
-                        <p class="category">Категория: Кошки</p>
+                        <h3 class="card-title" data-i18n="prod1Title">Сухой корм для кошек</h3>
+                        <p class="category"><span data-i18n="catLabel">Категория</span>: <span class="cat-name" data-i18n="catCats">Кошки</span></p>
                         <p class="price">450 руб.</p>
-                        <button class="card-btn">Купить</button>
+                        <button class="card-btn buy-btn" data-i18n="buyBtn">Купить</button>
                     </div>
 
-                    <div class="card" data-category="dogs">
+                    <div class="card animate-on-scroll" data-id="2" data-category="dogs" data-price="250">
                         <img src="cards/bone.jpg" alt="Кость">
-                        <h3>Игрушка косточка для собак</h3>
-                        <p class="category">Категория: Собаки</p>
+                        <h3 class="card-title" data-i18n="prod2Title">Игрушка косточка для собак</h3>
+                        <p class="category"><span data-i18n="catLabel">Категория</span>: <span class="cat-name" data-i18n="catDogs">Собаки</span></p>
                         <p class="price">250 руб.</p>
-                        <button class="card-btn">Купить</button>
+                        <button class="card-btn buy-btn" data-i18n="buyBtn">Купить</button>
                     </div>
 
-                    <div class="card" data-category="birds">
+                    <div class="card animate-on-scroll" data-id="3" data-category="birds" data-price="1200">
                         <img src="cards/cage.jpg" alt="Клетка">
-                        <h3>Клетка для попугая</h3>
-                        <p class="category">Категория: Птицы</p>
+                        <h3 class="card-title" data-i18n="prod3Title">Клетка для попугая</h3>
+                        <p class="category"><span data-i18n="catLabel">Категория</span>: <span class="cat-name" data-i18n="catBirds">Птицы</span></p>
                         <p class="price">1200 руб.</p>
-                        <button class="card-btn">Купить</button>
+                        <button class="card-btn buy-btn" data-i18n="buyBtn">Купить</button>
                     </div>
 
-                    <div class="card" data-category="fish">
+                    <div class="card animate-on-scroll" data-id="4" data-category="fish" data-price="2100">
                         <img src="cards/aqua.jpg" alt="Аквариум">
-                        <h3>Аквариум 20 литров</h3>
-                        <p class="category">Категория: Рыбки</p>
+                        <h3 class="card-title" data-i18n="prod4Title">Аквариум 20 литров</h3>
+                        <p class="category"><span data-i18n="catLabel">Категория</span>: <span class="cat-name" data-i18n="catFish">Рыбки</span></p>
                         <p class="price">2100 руб.</p>
-                        <button class="card-btn">Купить</button>
+                        <button class="card-btn buy-btn" data-i18n="buyBtn">Купить</button>
                     </div>
 
-                    <div class="card" data-category="cats">
+                    <div class="card animate-on-scroll" data-id="5" data-category="cats" data-price="850">
                         <img src="cards/scrach.jpg" alt="Когтеточка">
-                        <h3>Когтеточка столбик</h3>
-                        <p class="category">Категория: Кошки</p>
+                        <h3 class="card-title" data-i18n="prod5Title">Когтеточка столбик</h3>
+                        <p class="category"><span data-i18n="catLabel">Категория</span>: <span class="cat-name" data-i18n="catCats">Кошки</span></p>
                         <p class="price">850 руб.</p>
-                        <button class="card-btn">Купить</button>
+                        <button class="card-btn buy-btn" data-i18n="buyBtn">Купить</button>
                     </div>
 
-                    <div class="card" data-category="dogs">
+                    <div class="card animate-on-scroll" data-id="6" data-category="dogs" data-price="600">
                         <img src="cards/leash.jpg" alt="Поводок">
-                        <h3>Поводок-рулетка</h3>
-                        <p class="category">Категория: Собаки</p>
+                        <h3 class="card-title" data-i18n="prod6Title">Поводок-рулетка</h3>
+                        <p class="category"><span data-i18n="catLabel">Категория</span>: <span class="cat-name" data-i18n="catDogs">Собаки</span></p>
                         <p class="price">600 руб.</p>
-                        <button class="card-btn">Купить</button>
+                        <button class="card-btn buy-btn" data-i18n="buyBtn">Купить</button>
                     </div>
 
                 </div>
                 
-                <!-- Сообщение, если ничего не найдено -->
-                <p id="noResults" class="no-results" style="display: none;">Товары не найдены :(</p>
+                <p id="noResults" class="no-results" style="display: none;" data-i18n="noResults">Товары не найдены :(</p>
             </div>
         </section>
 
-        <!-- Дополнительная секция "О нас" -->
         <section id="about" class="about-section">
             <div class="container">
-                <h2>Почему выбирают нас</h2>
-                <div class="features">
-                    <div class="feature-item">
-                        <h3>Быстрая доставка</h3>
-                        <p>Доставим заказ в течение дня по всему городу.</p>
+                <h2 data-i18n="aboutTitle">Почему выбирают нас</h2>
+                <div class="slider-container">
+                    <button class="slider-btn prev-btn" id="prevSlide">❮</button>
+                    <div class="slider-track" id="sliderTrack">
+                        <div class="slide active">
+                            <h3 data-i18n="feat1Title">Быстрая доставка</h3>
+                            <p data-i18n="feat1Desc">Доставим заказ в течение дня по всему городу.</p>
+                        </div>
+                        <div class="slide">
+                            <h3 data-i18n="feat2Title">Гарантия качества</h3>
+                            <p data-i18n="feat2Desc">Только проверенные бренды и свежие корма.</p>
+                        </div>
+                        <div class="slide">
+                            <h3 data-i18n="feat3Title">Низкие цены</h3>
+                            <p data-i18n="feat3Desc">Приятные скидки постоянным покупателям.</p>
+                        </div>
                     </div>
-                    <div class="feature-item">
-                        <h3>Гарантия качества</h3>
-                        <p>Только проверенные бренды и свежие корма.</p>
-                    </div>
-                    <div class="feature-item">
-                        <h3>Низкие цены</h3>
-                        <p>Приятные скидки постоянным покупателям.</p>
-                    </div>
+                    <button class="slider-btn next-btn" id="nextSlide">❯</button>
                 </div>
             </div>
         </section>
 
-        <!-- Контакты -->
         <section id="contacts" class="contacts-section">
             <div class="container">
-                <h2>Связаться с нами</h2>
-                <form class="contact-form" onsubmit="event.preventDefault();">
-                    <input type="text" placeholder="Ваше имя" required>
-                    <input type="email" placeholder="Ваш Email" required>
-                    <textarea placeholder="Сообщение" rows="4"></textarea>
-                    <button type="submit" class="btn">Отправить</button>
+                <h2 data-i18n="contactsTitle">Связаться с нами</h2>
+                <form class="contact-form" name="contact" method="POST" data-netlify="true">
+                    <input type="hidden" name="form-name" value="contact">
+                    <input type="text" name="name" placeholder="Ваше имя" data-i18n-placeholder="namePlaceholder" required>
+                    <input type="email" name="email" placeholder="Ваш Email" data-i18n-placeholder="emailPlaceholder" required>
+                    <textarea name="message" placeholder="Сообщение" data-i18n-placeholder="msgPlaceholder" rows="4" required></textarea>
+                    <button type="submit" class="btn" data-i18n="sendBtn">Отправить</button>
                 </form>
             </div>
         </section>
     </main>
 
-    <!-- Подвал -->
     <footer class="footer">
         <div class="container">
             <p>© 2026 Зоомагазин "Лапки".</p>
             <p>Телефон: +7 (983) 453-65-00 | Email: zanegin.020202@gmail.com</p>
         </div>
     </footer>
+
+    <!-- Модальные окна -->
+    <div id="productModal" class="modal">
+        <div class="modal-content">
+            <span class="modal-close" id="closeProductModal">&times;</span>
+            <img id="modalImg" src="" alt="" class="modal-img">
+            <h3 id="modalTitle"></h3>
+            <p id="modalCategory" class="category"></p>
+            <p id="modalPrice" class="price"></p>
+            <p id="modalDescription" class="modal-desc"></p>
+            <div class="modal-actions">
+                <button id="screenReaderBtn" class="btn speak-btn">🔊 <span data-i18n="speakBtn">Озвучить</span></button>
+                <button id="modalBuyBtn" class="btn card-btn" data-i18n="buyBtn">Купить</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="cartModal" class="modal">
+        <div class="modal-content">
+            <span class="modal-close" id="closeCartModal">&times;</span>
+            <h3 data-i18n="cartHeader">Ваша корзина</h3>
+            <div id="cartItemsList" class="cart-items-list"></div>
+            <div class="cart-summary">
+                <p><strong data-i18n="cartTotal">Итого:</strong> <span id="cartTotalPrice">0</span> руб.</p>
+                <button id="clearCartBtn" class="btn clear-btn" data-i18n="clearCart">Очистить корзину</button>
+            </div>
+        </div>
+    </div>
+
+    <button id="scrollTopBtn" class="scroll-top-btn" title="Наверх">↑</button>
 
     <script src="js/script.js"></script>
 </body>
