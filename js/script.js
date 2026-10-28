@@ -361,3 +361,27 @@ nextBtn.addEventListener('click', () => showSlide(currentSlide + 1));
 
 setLanguage(currentLang);
 updateCartUI();
+
+const contactForm = document.getElementById('contactForm');
+
+if (contactForm) {
+    contactForm.addEventListener('submit', (e) => {
+        e.preventDefault(); // Предотвращаем перезагрузку страницы и переход на 404
+
+        const formData = new FormData(contactForm);
+
+        fetch('/', {
+            method: 'POST',
+            headers: { "Content-Type": "application/x-www-form-urlencoded" },
+            body: new URLSearchParams(formData).toString()
+        })
+        .then(() => {
+            alert(currentLang === 'ru' ? 'Спасибо! Ваше сообщение отправлено.' : 'Thank you! Your message has been sent.');
+            contactForm.reset(); // Очищаем поля формы
+        })
+        .catch((error) => {
+            alert(currentLang === 'ru' ? 'Ошибка при отправке сообщения.' : 'Error sending message.');
+            console.error('Netlify Form Error:', error);
+        });
+    });
+}
