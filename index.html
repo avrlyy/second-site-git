@@ -8,16 +8,25 @@
 </head>
 <body>
 
+    <!-- Шапка -->
     <header class="header">
         <div class="container header-container">
-            <a href="#hero" class="logo">🐾 Лапки</a>
-            <nav class="nav">
+            <a href="#hero" class="logo" aria-label="Главная страница">🐾 Лапки</a>
+            <nav class="nav" aria-label="Основная навигация">
                 <a href="#hero" data-i18n="navHome">Главная</a>
                 <a href="#catalog" data-i18n="navCatalog">Каталог</a>
                 <a href="#about" data-i18n="navAbout">О нас</a>
                 <a href="#contacts" data-i18n="navContacts">Контакты</a>
-                <button id="langToggleBtn" class="lang-btn">EN</button>
-                <button id="cartBtn" class="cart-btn">
+                
+                <!-- Панель доступности (Слабовидящие) -->
+                <div class="accessibility-panel">
+                    <button id="themeToggleBtn" class="access-btn" title="Сменить тему" aria-label="Сменить тему">🌙</button>
+                    <button id="fontDecBtn" class="access-btn" title="Уменьшить шрифт" aria-label="Уменьшить шрифт">A-</button>
+                    <button id="fontIncBtn" class="access-btn" title="Увеличить шрифт" aria-label="Увеличить шрифт">A+</button>
+                </div>
+
+                <button id="langToggleBtn" class="lang-btn" aria-label="Сменить язык">EN</button>
+                <button id="cartBtn" class="cart-btn" aria-label="Открыть корзину">
                     🛒 <span data-i18n="cartTitle">Корзина</span> (<span id="cartCount">0</span>)
                 </button>
             </nav>
@@ -25,6 +34,7 @@
     </header>
 
     <main>
+        <!-- Главный экран -->
         <section id="hero" class="hero">
             <div class="container">
                 <h1 data-i18n="heroTitle">Всё для ваших любимых питомцев</h1>
@@ -33,15 +43,19 @@
             </div>
         </section>
 
+        <!-- Каталог товаров -->
         <section id="catalog" class="catalog-section">
             <div class="container">
                 <h2 data-i18n="catalogTitle">Каталог товаров</h2>
                 
+                <!-- Поле живого поиска -->
                 <div class="search-box">
+                    <label for="searchInput" class="visually-hidden" data-i18n="searchLabel">Поиск по товарам</label>
                     <input type="text" id="searchInput" placeholder="Поиск по товарам..." data-i18n-placeholder="searchPlaceholder">
                 </div>
 
-                <div class="categories" id="categoriesBox">
+                <!-- Фильтр по категориям -->
+                <div class="categories" id="categoriesBox" role="group" aria-label="Фильтр по категориям">
                     <button class="category-btn active" data-category="all" data-i18n="catAll">Все товары</button>
                     <button class="category-btn" data-category="cats" data-i18n="catCats">Кошки</button>
                     <button class="category-btn" data-category="dogs" data-i18n="catDogs">Собаки</button>
@@ -49,54 +63,55 @@
                     <button class="category-btn" data-category="fish" data-i18n="catFish">Рыбки</button>
                 </div>
 
+                <!-- Список карточек -->
                 <div class="products-grid" id="productsGrid">
                     
                     <div class="card animate-on-scroll" data-id="1" data-category="cats" data-price="450">
-                        <img src="cards/catfood.jpg" alt="Корм">
+                        <img src="cards/catfood.jpg" alt="Сухой корм для кошек">
                         <h3 class="card-title" data-i18n="prod1Title">Сухой корм для кошек</h3>
                         <p class="category"><span data-i18n="catLabel">Категория</span>: <span class="cat-name" data-i18n="catCats">Кошки</span></p>
                         <p class="price">450 руб.</p>
-                        <button class="card-btn buy-btn" data-i18n="buyBtn">Купить</button>
+                        <button class="card-btn buy-btn" data-i18n="buyBtn" aria-label="Купить Сухой корм для кошек">Купить</button>
                     </div>
 
                     <div class="card animate-on-scroll" data-id="2" data-category="dogs" data-price="250">
-                        <img src="cards/bone.jpg" alt="Кость">
+                        <img src="cards/bone.jpg" alt="Игрушка косточка для собак">
                         <h3 class="card-title" data-i18n="prod2Title">Игрушка косточка для собак</h3>
                         <p class="category"><span data-i18n="catLabel">Категория</span>: <span class="cat-name" data-i18n="catDogs">Собаки</span></p>
                         <p class="price">250 руб.</p>
-                        <button class="card-btn buy-btn" data-i18n="buyBtn">Купить</button>
+                        <button class="card-btn buy-btn" data-i18n="buyBtn" aria-label="Купить Игрушка косточка для собак">Купить</button>
                     </div>
 
                     <div class="card animate-on-scroll" data-id="3" data-category="birds" data-price="1200">
-                        <img src="cards/cage.jpg" alt="Клетка">
+                        <img src="cards/cage.jpg" alt="Клетка для попугая">
                         <h3 class="card-title" data-i18n="prod3Title">Клетка для попугая</h3>
                         <p class="category"><span data-i18n="catLabel">Категория</span>: <span class="cat-name" data-i18n="catBirds">Птицы</span></p>
                         <p class="price">1200 руб.</p>
-                        <button class="card-btn buy-btn" data-i18n="buyBtn">Купить</button>
+                        <button class="card-btn buy-btn" data-i18n="buyBtn" aria-label="Купить Клетка для попугая">Купить</button>
                     </div>
 
                     <div class="card animate-on-scroll" data-id="4" data-category="fish" data-price="2100">
-                        <img src="cards/aqua.jpg" alt="Аквариум">
+                        <img src="cards/aqua.jpg" alt="Аквариум 20 литров">
                         <h3 class="card-title" data-i18n="prod4Title">Аквариум 20 литров</h3>
                         <p class="category"><span data-i18n="catLabel">Категория</span>: <span class="cat-name" data-i18n="catFish">Рыбки</span></p>
                         <p class="price">2100 руб.</p>
-                        <button class="card-btn buy-btn" data-i18n="buyBtn">Купить</button>
+                        <button class="card-btn buy-btn" data-i18n="buyBtn" aria-label="Купить Аквариум 20 литров">Купить</button>
                     </div>
 
                     <div class="card animate-on-scroll" data-id="5" data-category="cats" data-price="850">
-                        <img src="cards/scrach.jpg" alt="Когтеточка">
+                        <img src="cards/scrach.jpg" alt="Когтеточка столбик">
                         <h3 class="card-title" data-i18n="prod5Title">Когтеточка столбик</h3>
                         <p class="category"><span data-i18n="catLabel">Категория</span>: <span class="cat-name" data-i18n="catCats">Кошки</span></p>
                         <p class="price">850 руб.</p>
-                        <button class="card-btn buy-btn" data-i18n="buyBtn">Купить</button>
+                        <button class="card-btn buy-btn" data-i18n="buyBtn" aria-label="Купить Когтеточка столбик">Купить</button>
                     </div>
 
                     <div class="card animate-on-scroll" data-id="6" data-category="dogs" data-price="600">
-                        <img src="cards/leash.jpg" alt="Поводок">
+                        <img src="cards/leash.jpg" alt="Поводок-рулетка">
                         <h3 class="card-title" data-i18n="prod6Title">Поводок-рулетка</h3>
                         <p class="category"><span data-i18n="catLabel">Категория</span>: <span class="cat-name" data-i18n="catDogs">Собаки</span></p>
                         <p class="price">600 руб.</p>
-                        <button class="card-btn buy-btn" data-i18n="buyBtn">Купить</button>
+                        <button class="card-btn buy-btn" data-i18n="buyBtn" aria-label="Купить Поводок-рулетка">Купить</button>
                     </div>
 
                 </div>
@@ -105,11 +120,13 @@
             </div>
         </section>
 
+        <!-- "О нас" и Слайдер -->
         <section id="about" class="about-section">
             <div class="container">
                 <h2 data-i18n="aboutTitle">Почему выбирают нас</h2>
+                
                 <div class="slider-container">
-                    <button class="slider-btn prev-btn" id="prevSlide">❮</button>
+                    <button class="slider-btn prev-btn" id="prevSlide" aria-label="Предыдущий слайд">❮</button>
                     <div class="slider-track" id="sliderTrack">
                         <div class="slide active">
                             <h3 data-i18n="feat1Title">Быстрая доставка</h3>
@@ -124,25 +141,27 @@
                             <p data-i18n="feat3Desc">Приятные скидки постоянным покупателям.</p>
                         </div>
                     </div>
-                    <button class="slider-btn next-btn" id="nextSlide">❯</button>
+                    <button class="slider-btn next-btn" id="nextSlide" aria-label="Следующий слайд">❯</button>
                 </div>
             </div>
         </section>
 
+        <!-- Контакты с Netlify Forms -->
         <section id="contacts" class="contacts-section">
             <div class="container">
                 <h2 data-i18n="contactsTitle">Связаться с нами</h2>
-                <form id="contactForm" class="contact-form" name="contact" method="POST" data-netlify="true">
+                <form id="contactForm" class="contact-form" name="contact" method="POST" data-netlify="true" action="/">
                     <input type="hidden" name="form-name" value="contact">
-                    <input type="text" name="name" placeholder="Ваше имя" data-i18n-placeholder="namePlaceholder" required>
-                    <input type="email" name="email" placeholder="Ваш Email" data-i18n-placeholder="emailPlaceholder" required>
-                    <textarea name="message" placeholder="Сообщение" data-i18n-placeholder="msgPlaceholder" rows="4" required></textarea>
+                    <input type="text" name="name" placeholder="Ваше имя" data-i18n-placeholder="namePlaceholder" required aria-label="Ваше имя">
+                    <input type="email" name="email" placeholder="Ваш Email" data-i18n-placeholder="emailPlaceholder" required aria-label="Ваш Email">
+                    <textarea name="message" placeholder="Сообщение" data-i18n-placeholder="msgPlaceholder" rows="4" required aria-label="Сообщение"></textarea>
                     <button type="submit" class="btn" data-i18n="sendBtn">Отправить</button>
                 </form>
             </div>
         </section>
     </main>
 
+    <!-- Подвал -->
     <footer class="footer">
         <div class="container">
             <p>© 2026 Зоомагазин "Лапки".</p>
@@ -150,26 +169,27 @@
         </div>
     </footer>
 
-    <!-- Модальные окна -->
-    <div id="productModal" class="modal">
+    <!-- Модальное окно деталей товара -->
+    <div id="productModal" class="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
         <div class="modal-content">
-            <span class="modal-close" id="closeProductModal">&times;</span>
+            <button class="modal-close" id="closeProductModal" aria-label="Закрыть окно">&times;</button>
             <img id="modalImg" src="" alt="" class="modal-img">
             <h3 id="modalTitle"></h3>
             <p id="modalCategory" class="category"></p>
             <p id="modalPrice" class="price"></p>
             <p id="modalDescription" class="modal-desc"></p>
+            
             <div class="modal-actions">
-                <button id="screenReaderBtn" class="btn speak-btn">🔊 <span data-i18n="speakBtn">Озвучить</span></button>
                 <button id="modalBuyBtn" class="btn card-btn" data-i18n="buyBtn">Купить</button>
             </div>
         </div>
     </div>
 
-    <div id="cartModal" class="modal">
+    <!-- Модальное окно корзины -->
+    <div id="cartModal" class="modal" role="dialog" aria-modal="true" aria-labelledby="cartHeaderTitle">
         <div class="modal-content">
-            <span class="modal-close" id="closeCartModal">&times;</span>
-            <h3 data-i18n="cartHeader">Ваша корзина</h3>
+            <button class="modal-close" id="closeCartModal" aria-label="Закрыть корзину">&times;</button>
+            <h3 id="cartHeaderTitle" data-i18n="cartHeader">Ваша корзина</h3>
             <div id="cartItemsList" class="cart-items-list"></div>
             <div class="cart-summary">
                 <p><strong data-i18n="cartTotal">Итого:</strong> <span id="cartTotalPrice">0</span> руб.</p>
@@ -178,7 +198,8 @@
         </div>
     </div>
 
-    <button id="scrollTopBtn" class="scroll-top-btn" title="Наверх">↑</button>
+    <!-- Кнопка «Наверх» -->
+    <button id="scrollTopBtn" class="scroll-top-btn" aria-label="Наверх">↑</button>
 
     <script src="js/script.js"></script>
 </body>

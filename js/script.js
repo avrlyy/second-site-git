@@ -9,6 +9,7 @@ const translations = {
         heroDesc: "Качественные корма, игрушки и аксессуары по доступным ценам.",
         heroBtn: "Перейти к товарам",
         catalogTitle: "Каталог товаров",
+        searchLabel: "Поиск по товарам",
         searchPlaceholder: "Поиск по товарам...",
         catAll: "Все товары",
         catCats: "Кошки",
@@ -29,7 +30,6 @@ const translations = {
         emailPlaceholder: "Ваш Email",
         msgPlaceholder: "Сообщение",
         sendBtn: "Отправить",
-        speakBtn: "Озвучить",
         buyBtn: "Купить",
         cartHeader: "Ваша корзина",
         cartTotal: "Итого:",
@@ -59,6 +59,7 @@ const translations = {
         heroDesc: "Quality food, toys and accessories at affordable prices.",
         heroBtn: "Browse Products",
         catalogTitle: "Product Catalog",
+        searchLabel: "Search products",
         searchPlaceholder: "Search products...",
         catAll: "All Products",
         catCats: "Cats",
@@ -79,7 +80,6 @@ const translations = {
         emailPlaceholder: "Your Email",
         msgPlaceholder: "Message",
         sendBtn: "Send",
-        speakBtn: "Listen",
         buyBtn: "Buy",
         cartHeader: "Your Shopping Cart",
         cartTotal: "Total:",
@@ -103,6 +103,16 @@ const translations = {
 
 let currentLang = localStorage.getItem('siteLang') || 'ru';
 let cart = JSON.parse(localStorage.getItem('siteCart')) || [];
+let currentFontSize = Number(localStorage.getItem('siteFontSize')) || 16;
+let isDarkTheme = localStorage.getItem('siteTheme') === 'dark';
+
+// Применение начальных настроек доступности
+document.documentElement.style.fontSize = `${currentFontSize}px`;
+if (isDarkTheme) {
+    document.body.classList.add('dark-theme');
+    const themeBtn = document.getElementById('themeToggleBtn');
+    if (themeBtn) themeBtn.textContent = '☀️';
+}
 
 const searchInput = document.getElementById('searchInput');
 const categoryButtons = document.querySelectorAll('.category-btn');
@@ -136,6 +146,40 @@ langToggleBtn.addEventListener('click', () => {
     setLanguage(currentLang === 'ru' ? 'en' : 'ru');
 });
 
+// --- Доступность: Переключение темы ---
+const themeToggleBtn = document.getElementById('themeToggleBtn');
+if (themeToggleBtn) {
+    themeToggleBtn.addEventListener('click', () => {
+        document.body.classList.toggle('dark-theme');
+        const isDark = document.body.classList.contains('dark-theme');
+        localStorage.setItem('siteTheme', isDark ? 'dark' : 'light');
+        themeToggleBtn.textContent = isDark ? '☀️' : '🌙';
+    });
+}
+
+// --- Доступность: Изменение размера шрифта ---
+const fontIncBtn = document.getElementById('fontIncBtn');
+const fontDecBtn = document.getElementById('fontDecBtn');
+
+if (fontIncBtn && fontDecBtn) {
+    fontIncBtn.addEventListener('click', () => {
+        if (currentFontSize < 22) {
+            currentFontSize += 2;
+            document.documentElement.style.fontSize = `${currentFontSize}px`;
+            localStorage.setItem('siteFontSize', currentFontSize);
+        }
+    });
+
+    fontDecBtn.addEventListener('click', () => {
+        if (currentFontSize > 12) {
+            currentFontSize -= 2;
+            document.documentElement.style.fontSize = `${currentFontSize}px`;
+            localStorage.setItem('siteFontSize', currentFontSize);
+        }
+    });
+}
+
+// Живой поиск и фильтрация
 function filterProducts() {
     const searchText = searchInput.value.toLowerCase().trim();
     let visibleCount = 0;
@@ -169,7 +213,7 @@ categoryButtons.forEach(button => {
     });
 });
 
-// Модальное окно и описания
+// Модальное окно деталей товара
 const productModal = document.getElementById('productModal');
 const closeProductModal = document.getElementById('closeProductModal');
 const modalImg = document.getElementById('modalImg');
@@ -177,7 +221,6 @@ const modalTitle = document.getElementById('modalTitle');
 const modalCategory = document.getElementById('modalCategory');
 const modalPrice = document.getElementById('modalPrice');
 const modalDescription = document.getElementById('modalDescription');
-const screenReaderBtn = document.getElementById('screenReaderBtn');
 const modalBuyBtn = document.getElementById('modalBuyBtn');
 
 let currentActiveCardData = null;
@@ -208,17 +251,6 @@ cards.forEach((card, index) => {
 
 closeProductModal.addEventListener('click', () => {
     productModal.classList.remove('open');
-    window.speechSynthesis.cancel();
-});
-
-screenReaderBtn.addEventListener('click', () => {
-    if ('speechSynthesis' in window) {
-        window.speechSynthesis.cancel();
-        const textToRead = `${modalTitle.textContent}. ${modalCategory.textContent}. Цена: ${modalPrice.textContent}. Описание: ${modalDescription.textContent}`;
-        const utterance = new SpeechSynthesisUtterance(textToRead);
-        utterance.lang = currentLang === 'ru' ? 'ru-RU' : 'en-US';
-        window.speechSynthesis.speak(utterance);
-    }
 });
 
 // Корзина
@@ -359,15 +391,11 @@ function showSlide(index) {
 prevBtn.addEventListener('click', () => showSlide(currentSlide - 1));
 nextBtn.addEventListener('click', () => showSlide(currentSlide + 1));
 
-setLanguage(currentLang);
-updateCartUI();
-
+// Netlify Forms AJAX отправка (без ошибки 404)
 const contactForm = document.getElementById('contactForm');
-
 if (contactForm) {
     contactForm.addEventListener('submit', (e) => {
-        e.preventDefault(); // Предотвращаем перезагрузку страницы и переход на 404
-
+        e.preventDefault();
         const formData = new FormData(contactForm);
 
         fetch('/', {
@@ -377,7 +405,7 @@ if (contactForm) {
         })
         .then(() => {
             alert(currentLang === 'ru' ? 'Спасибо! Ваше сообщение отправлено.' : 'Thank you! Your message has been sent.');
-            contactForm.reset(); // Очищаем поля формы
+            contactForm.reset();
         })
         .catch((error) => {
             alert(currentLang === 'ru' ? 'Ошибка при отправке сообщения.' : 'Error sending message.');
@@ -385,3 +413,6 @@ if (contactForm) {
         });
     });
 }
+
+setLanguage(currentLang);
+updateCartUI();
